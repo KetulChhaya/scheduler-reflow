@@ -4,8 +4,7 @@
     "description": "Production schedule reflow system for manufacturing facilities",
     "type": "module",
     "scripts": {
-        "start": "npx tsx src/main.ts",
-        "generate": "npx tsx src/data/generate-scenarios.ts"
+        "start": "npx tsx src/main.ts"
     },
     "dependencies": {
         "luxon": "^3.5.0"
