@@ -11,8 +11,11 @@ npm install
 ## Running
 
 ```bash
-# Run the 3 main scenarios (delay cascade, maintenance conflict, multi-constraint)
+# Run all 5 scenarios
 npm run start
+
+# Run the test suite (16 tests)
+npm run test
 ```
 
 ## How it works
@@ -44,7 +47,11 @@ src/
 ├── data/
 │   ├── scenario-1.ts         -- Delay cascade
 │   ├── scenario-2.ts         -- Maintenance conflict
-│   └── scenario-3.ts         -- Multi-constraint
+│   ├── scenario-3.ts         -- Mixed (delay + maintenance)
+│   ├── scenario-4.ts         -- Weekend skip
+│   └── scenario-5.ts         -- Mixed (delay + maintenance + weekend)
+├── tests/
+│   └── reflow.test.ts        -- Vitest test suite
 └── main.ts                   -- Entry point
 ```
 
@@ -54,7 +61,11 @@ src/
 
 **Maintenance Conflict**: A single order (WO-001, 240min) spans a shift boundary (Mon 3PM past 5PM end) and must avoid a Tuesday maintenance window.
 
-**Multi-Constraint**: Two work centers, three orders in a dependency chain across centers. WO-003 (600min) spans into a day with a maintenance window and must work around it.
+**Mixed (delay + maintenance)**: Two work centers, three orders in a dependency chain across centers. WO-003 (600min) spans into a day with a maintenance window and must work around it.
+
+**Weekend Skip**: A single order (WO-001, 180min) starts Friday 4PM. Works until 5PM, skips Saturday and Sunday, finishes Monday 10AM.
+
+**Mixed (delay + maintenance + weekend)**: Three work centers, three orders chained across them. A 3-hour delay on WO-001 pushes WO-002 into a maintenance window on WC-2, then WO-003 spills past Friday into the following Monday.
 
 ## Tech
 - TypeScript (strict mode)
