@@ -13,7 +13,7 @@ const constraintChecker = new ConstraintChecker();
 const scenarios: Array<{ name: string; input: ReflowInput }> = [
     { name: "Delay Cascade", input: scenario1 },
     { name: "Maintenance Conflict", input: scenario2 },
-    { name: "Multi-Constraint", input: scenario3 },
+    { name: "Mixed (delay + maintenance)", input: scenario3 },
     { name: "Weekend Skip", input: scenario4 },
     { name: "Mixed (delay + maintenance + weekend)", input: scenario5 },
 ];

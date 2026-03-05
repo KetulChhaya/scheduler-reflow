@@ -71,3 +71,17 @@ src/
 - TypeScript (strict mode)
 - Luxon for all date operations
 - tsx as the runner
+- Vitest for testing
+
+## Trade-offs
+
+**Greedy forward scheduling vs. optimization**: The algorithm places each order at its earliest possible slot. Sorting orders by dependencies takes O(V+E) where V is the number of work orders and E is the number of dependency links between them. However, it doesn't try to minimize total delay across the whole schedule. A smarter approach could try all possible orderings to find the one with the least overall disruption, but that would be far more complex and slower.
+
+**Block-based date math vs. minute-by-minute**: Instead of stepping through every minute to count working time, the algorithm calculates available time blocks within each shift (subtracting maintenance windows) and uses them in parts. This is faster for long-duration orders but the block-splitting logic in `date-utils.ts` is harder to follow than a simple minute counter would be.
+
+**Post-reflow validation**: The algorithm runs the constraint checker on its own output before returning. If the scheduling logic is correct, there should never be violations. But it catches bugs early and gives clear error messages when something unexpected happens.
+
+## Limitations
+
+- No priority-based scheduling as the orders are processed in dependency order, not by urgency or due date
+- No setup time between orders (could be added via `setupTimeMinutes` field)

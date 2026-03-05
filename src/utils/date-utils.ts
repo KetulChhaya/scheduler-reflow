@@ -2,6 +2,7 @@ import { DateTime } from "luxon";
 import type { Shift, MaintenanceWindow } from "../reflow/types.js";
 
 // Returns shift window for a given date's weekday, or null if no shift that day.
+// @upgrade support multiple shift windows per day natively (currently achievable via maintenance windows as gaps)
 export function getShiftForDay(
     date: DateTime,
     shifts: Shift[]
@@ -82,6 +83,7 @@ function subtractMaintenance(
 }
 
 // Calculates end date by consuming durationMinutes of working time (shift hours minus maintenance).
+// @upgrade add setupTimeMinutes support - consume setup time before production time
 export function calculateEndDateWithShifts(
     startDate: DateTime,
     durationMinutes: number,

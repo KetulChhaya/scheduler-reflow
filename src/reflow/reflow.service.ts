@@ -30,6 +30,7 @@ function topologicalSort(workOrders: WorkOrder[]): string[] {
         }
     }
 
+    // @upgrade use a priority queue instead of array shift for better performance on large graphs
     const queue: string[] = [];
     for (const [id, deg] of inDegree) {
         if (deg === 0) queue.push(id);
@@ -88,6 +89,7 @@ export class ReflowService {
         const immovable = workOrders.filter((wo) => wo.data.isMaintenance);
 
         // Sort movable orders by dependency order
+        // @upgrade sort movable orders by priority/due date before topological sort
         const sortedIds = topologicalSort(movable);
 
         // Track scheduled end dates per work center for conflict resolution
