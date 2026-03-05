@@ -3,6 +3,8 @@ import { ConstraintChecker } from "./reflow/constraint-checker.js";
 import { scenario1 } from "./data/scenario-1.js";
 import { scenario2 } from "./data/scenario-2.js";
 import { scenario3 } from "./data/scenario-3.js";
+import { scenario4 } from "./data/scenario-4.js";
+import { scenario5 } from "./data/scenario-5.js";
 import type { ReflowInput } from "./reflow/types.js";
 
 const reflowService = new ReflowService();
@@ -12,6 +14,8 @@ const scenarios: Array<{ name: string; input: ReflowInput }> = [
     { name: "Delay Cascade", input: scenario1 },
     { name: "Maintenance Conflict", input: scenario2 },
     { name: "Multi-Constraint", input: scenario3 },
+    { name: "Weekend Skip", input: scenario4 },
+    { name: "Mixed (delay + maintenance + weekend)", input: scenario5 },
 ];
 
 for (const { name, input } of scenarios) {
