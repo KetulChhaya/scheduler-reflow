@@ -2,6 +2,9 @@
 
 A scheduling algorithm that reschedules manufacturing work orders when disruptions happen (delays, machine breakdowns). It looks for and respects dependencies between orders, prevents work center conflicts, handles shift boundaries, and avoids maintenance windows.
 
+### Loom Video Link:
+https://www.loom.com/share/09c0111cb2dd442ea39377db6d81f65a
+
 ## Setup
 
 ```bash
@@ -52,6 +55,8 @@ src/
 │   └── scenario-5.ts         -- Mixed (delay + maintenance + weekend)
 ├── tests/
 │   └── reflow.test.ts        -- Vitest test suite
+├── prompts/
+│   └── ai_prompts.md         -- Prompts
 └── main.ts                   -- Entry point
 ```
 

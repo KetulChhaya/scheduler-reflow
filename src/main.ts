@@ -18,7 +18,16 @@ const scenarios: Array<{ name: string; input: ReflowInput }> = [
     { name: "Mixed (delay + maintenance + weekend)", input: scenario5 },
 ];
 
-for (const { name, input } of scenarios) {
+// Filter by scenario number if provided: npm run start -- 1
+const pick = process.argv[2] ? parseInt(process.argv[2], 10) : null;
+const toRun = pick ? scenarios.filter((_, i) => i + 1 === pick) : scenarios;
+
+if (pick && toRun.length === 0) {
+    console.log(`No scenario #${pick}. Available: 1-${scenarios.length}`);
+    process.exit(1);
+}
+
+for (const { name, input } of toRun) {
     console.log(`\n--- ${name} ---\n`);
 
     try {
